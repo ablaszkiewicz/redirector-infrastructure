@@ -23,7 +23,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./reverse-proxy/Dockerfile
+          dockerfile: ./reverse-proxy/Dockerfile
           push: true
           tags: ablaszkiewicz/redirector-proxy:latest
   update-VPS-container:
