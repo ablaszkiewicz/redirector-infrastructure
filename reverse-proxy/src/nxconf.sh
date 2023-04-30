@@ -17,7 +17,7 @@ server {
     server_name  localhost;
 
     location ~ ^/($output_variable)/* {
-        proxy_pass http://172.17.0.1:2137;
+        proxy_pass http://192.168.3.130:3003;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
@@ -35,7 +35,7 @@ server {
     }
 
     location / {
-        proxy_pass http://172.17.0.1:420;
+        proxy_pass http://192.168.3.130:3001;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
