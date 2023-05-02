@@ -25,10 +25,10 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./reverse-proxy
-          file: ./reverse-proxy/Dockerfile
+          context: ./reverse-proxy-domain
+          file: ./reverse-proxy-domain/Dockerfile
           push: true
-          tags: ablaszkiewicz/redirector-proxy:latest
+          tags: ablaszkiewicz/redirector-proxy-domain:latest
   update-VPS-container:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -41,6 +41,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy )
-            docker pull ablaszkiewicz/redirector-proxy
-            docker run -d -p 80:80 ablaszkiewicz/redirector-proxy
+            docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-domain )
+            docker pull ablaszkiewicz/redirector-proxy-domain
+            docker run -d -p 3080:3080 ablaszkiewicz/redirector-proxy-domain

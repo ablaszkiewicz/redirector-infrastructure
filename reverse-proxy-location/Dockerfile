@@ -16,7 +16,7 @@ RUN echo "server_names_hash_bucket_size 128;" >/etc/nginx/conf.d/_server_name_ha
 RUN echo "client_max_body_size 1g;" >/etc/nginx/conf.d/my_proxy.conf
 RUN echo -e "map \$http_upgrade \$connection_upgrade {\n default upgrade;\n '' close;\n}" >/etc/nginx/conf.d/_websocks.conf
 
-EXPOSE 80
+EXPOSE 3080
 
 USER nginx
 
