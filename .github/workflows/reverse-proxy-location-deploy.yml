@@ -43,4 +43,4 @@ jobs:
           script: |
             docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-location )
             docker pull ablaszkiewicz/redirector-proxy-location
-            docker run -d -p 3080:3080 ablaszkiewicz/redirector-proxy-location
+            docker run -d -p 3080:80 ablaszkiewicz/redirector-proxy-location
