@@ -1,7 +1,9 @@
 #!/bin/sh
 domain="asddaff.bieda.it"
 out="/etc/nginx/conf.d/default.conf"
-config_file="config"  
+config_file="config" 
+frontend_path="http://192.168.3.130:4003"
+backend_path="http://192.168.3.130:4001"
 
 output_variable=$(cat "$config_file" | tr '\n' '|')
 output_variable=${output_variable%|}
@@ -17,7 +19,7 @@ server {
     server_name  localhost;
 
     location ~ ^/($output_variable)/* {
-        proxy_pass http://192.168.3.130:3003;
+        proxy_pass $frontend_path;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
@@ -35,7 +37,7 @@ server {
     }
 
     location = / {
-        proxy_pass http://192.168.3.130:3003;
+        proxy_pass $frontend_path;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
@@ -53,7 +55,7 @@ server {
     }
 
     location / {
-        proxy_pass http://192.168.3.130:3001;
+        proxy_pass $backend_path;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
