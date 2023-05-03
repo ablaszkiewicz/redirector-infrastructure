@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy domain proxy
 
 on:
   workflow_dispatch:

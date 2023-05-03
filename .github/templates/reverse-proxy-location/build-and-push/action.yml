@@ -36,4 +36,4 @@ runs:
         context: ${{ inputs.context }}
         file: ${{ inputs.file }}
         push: true
-        tags: ablaszkiewicz/${{ inputs.image-name }}:latest
+        tags: ${{ inputs.image-name }}:latest
