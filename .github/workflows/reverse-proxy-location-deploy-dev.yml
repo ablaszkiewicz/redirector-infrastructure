@@ -12,8 +12,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Deploy
-        uses: './.github/templates/reverse-proxy-location-deploy'
+      - name: Build and push
+        uses: './.github/templates/reverse-proxy-location/build-and-push'
         with:
+          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
           environment: dev
-          port: 4080
+      - name: Deploy
+        uses: './.github/templates/reverse-proxy-location/deploy'
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          environment: dev
+          container-port: 4080

@@ -1,9 +1,14 @@
 name: Deploy
 
 inputs:
-  environment:
+  # Dockerhub
+  dockerhub-username:
     required: true
-  port:
+  dockerhub-token:
+    required: true
+
+  # Env
+  environment:
     required: true
 
 runs:
@@ -28,18 +33,3 @@ runs:
         file: ./reverse-proxy-location-${{ inputs.environment }}/Dockerfile
         push: true
         tags: ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}:latest
-  # update-VPS-container:
-  #   needs: build-and-push
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Update image inside VPS
-  #       uses: appleboy/ssh-action@master
-  #       with:
-  #         host: ${{ secrets.HOST }}
-  #         USERNAME: ${{ secrets.USERNAME }}
-  #         PORT: ${{ secrets.PORT }}
-  #         KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-  #         script: |
-  #           docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }} )
-  #           docker pull ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
-  #           docker run -d -p ${{ inputs.port }}:80 ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
