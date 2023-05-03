@@ -1,6 +1,12 @@
 name: Deploy
 
 inputs:
+  # Context
+  context:
+    required: true
+  file:
+    required: true
+
   # Dockerhub
   dockerhub-username:
     required: true
@@ -29,7 +35,7 @@ runs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
-        context: ./reverse-proxy-location-${{ inputs.environment }}
-        file: ./reverse-proxy-location-${{ inputs.environment }}/Dockerfile
+        context: ${{ inputs.context }}
+        file: ${{ inputs.file }}
         push: true
         tags: ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}:latest

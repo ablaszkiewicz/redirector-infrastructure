@@ -18,6 +18,8 @@ jobs:
           dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
           environment: dev
+          context: ./reverse-proxy-location-dev
+          file: ./reverse-proxy-location-dev/Dockerfile
       - name: Deploy
         uses: './.github/templates/reverse-proxy-location/deploy'
         with:
