@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Deploy
-        uses: './.github/templates/reverse-proxy-location-deploy-template.yml'
+        uses: './.github/templates/reverse-proxy-location-deploy'
         with:
           environment: dev
           port: 4080
