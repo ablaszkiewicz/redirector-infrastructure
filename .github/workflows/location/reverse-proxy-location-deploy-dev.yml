@@ -1,0 +1,17 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: './github/workflows/location/reverse-proxy-location-deploy-template.yml'
+        with:
+          environment: dev
+          port: 4080

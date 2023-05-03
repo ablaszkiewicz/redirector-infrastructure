@@ -1,10 +1,10 @@
 name: Deploy
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - 'main'
+inputs:
+  environment:
+    required: true
+  port:
+    required: true
 
 jobs:
   build-and-push:
@@ -25,10 +25,10 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ./reverse-proxy-location-dev
-          file: ./reverse-proxy-location-dev/Dockerfile
+          context: ./reverse-proxy-location-${{ inputs.environment }}}
+          file: ./reverse-proxy-location-${{ inputs.environment }}/Dockerfile
           push: true
-          tags: ablaszkiewicz/redirector-proxy-location:latest
+          tags: ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}:latest
   update-VPS-container:
     needs: build-and-push
     runs-on: ubuntu-latest
@@ -41,6 +41,6 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-location )
-            docker pull ablaszkiewicz/redirector-proxy-location
-            docker run -d -p 4080:80 ablaszkiewicz/redirector-proxy-location
+            docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }} )
+            docker pull ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
+            docker run -d -p ${{ inputs.port }}:80 ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
