@@ -3,3 +3,5 @@ login
 register
 static
 resources
+forgot-password
+reset_password
