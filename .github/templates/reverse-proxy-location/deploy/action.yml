@@ -25,10 +25,10 @@ runs:
     - name: Update image inside VPS
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ inputs.host }}
+        USERNAME: ${{ inputs.username }}
+        PORT: ${{ inputs.port }}
+        KEY: ${{ inputs.ssh-private-key }}
         script: |
           docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }} )
           docker pull ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
