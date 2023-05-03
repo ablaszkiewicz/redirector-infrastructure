@@ -12,9 +12,7 @@ inputs:
     required: true
   dockerhub-token:
     required: true
-
-  # Env
-  environment:
+  image-name:
     required: true
 
 runs:
@@ -38,4 +36,4 @@ runs:
         context: ${{ inputs.context }}
         file: ${{ inputs.file }}
         push: true
-        tags: ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}:latest
+        tags: ablaszkiewicz/${{ inputs.image-name }}:latest

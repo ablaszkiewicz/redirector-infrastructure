@@ -11,11 +11,9 @@ inputs:
   ssh-private-key:
     required: true
 
-  # Env
-  environment:
-    required: true
-
   # Docker
+  image-name:
+    required: true
   container-port:
     required: true
 
@@ -30,6 +28,6 @@ runs:
         PORT: ${{ inputs.port }}
         KEY: ${{ inputs.ssh-private-key }}
         script: |
-          docker stop $(docker ps -q --filter ancestor=ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }} )
-          docker pull ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
-          docker run -d -p ${{ inputs.port }}:80 ablaszkiewicz/redirector-proxy-location-${{ inputs.environment }}
+          docker stop $(docker ps -q --filter ancestor=${{ inputs.image-name }} )
+          docker pull ${{ inputs.image-name }}
+          docker run -d -p ${{ inputs.port }}:80 ${{ inputs.image-name }}

@@ -17,7 +17,7 @@ jobs:
         with:
           dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub-token: ${{ secrets.DOCKERHUB_TOKEN }}
-          environment: dev
+          image-name: ablaszkiewicz/reverse-proxy-location-dev
           context: ./reverse-proxy-location-dev
           file: ./reverse-proxy-location-dev/Dockerfile
       - name: Deploy
@@ -27,5 +27,5 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          environment: dev
+          image-name: ablaszkiewicz/reverse-proxy-location-dev
           container-port: 4080
