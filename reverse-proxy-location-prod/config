@@ -1,8 +1,12 @@
+static
+assets
+resources
+
+forgot-password
+reset-password
+confirm
 dashboard
 login
 register
-static
-resources
-forgot-password
-reset-password
+links
 confirm

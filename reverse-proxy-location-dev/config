@@ -1,9 +1,12 @@
-dashboard
-login
-register
 static
+assets
 resources
+
 forgot-password
 reset-password
 confirm
-assets
+dashboard
+login
+register
+links
+confirm
