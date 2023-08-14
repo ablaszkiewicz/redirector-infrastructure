@@ -2,8 +2,8 @@
 domain="asddaff.bieda.it"
 out="/etc/nginx/conf.d/default.conf"
 config_file="config" 
-frontend_path="http://192.168.3.130:4003"
-backend_path="http://192.168.3.130:4001"
+frontend_path="http://192.168.1.103:4003"
+backend_path="http://192.168.1.103:4001"
 
 output_variable=$(cat "$config_file" | tr '\n' '|')
 output_variable=${output_variable%|}
