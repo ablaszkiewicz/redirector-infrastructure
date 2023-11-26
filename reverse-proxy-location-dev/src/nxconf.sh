@@ -56,7 +56,7 @@ server {
     }
 
     location /api {
-        rewrite ^/api/(.*)$ /$1 break;
+        rewrite /api/(.*)$ /$1 break;
         proxy_pass $backend_path;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
