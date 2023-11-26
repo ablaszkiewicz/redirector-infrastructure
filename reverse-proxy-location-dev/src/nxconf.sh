@@ -55,7 +55,7 @@ server {
         proxy_connect_timeout 120;
     }
 
-    location /api/ {
+    location /api {
         rewrite ^/api/(.*)$ /$1 break;
         proxy_pass $backend_path;
         proxy_set_header Host \$host;
