@@ -4,7 +4,7 @@ out="/etc/nginx/conf.d/default.conf"
 config_file="config" 
 frontend_path="http://192.168.1.103:4003"
 redirecting_backend_path="http://192.168.1.103:4001"
-backend_path="http://192.168.1.103:4002"
+backend_path="http://192.168.1.103:4002/"
 
 output_variable=$(cat "$config_file" | tr '\n' '|')
 output_variable=${output_variable%|}
@@ -55,8 +55,7 @@ server {
         proxy_connect_timeout 120;
     }
 
-    location /api {
-        rewrite /api/(.*)$ /$1 break;
+    location /api/ {
         proxy_pass $backend_path;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
