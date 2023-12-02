@@ -3,7 +3,7 @@ domain="asddaff.bieda.it"
 out="/etc/nginx/conf.d/default.conf"
 config_file="config"
 frontend_path="http://192.168.1.103:3003"
-backend_path="http://192.168.1.103:3001"
+redirecting_backend_path="http://192.168.1.103:3001"
 backend_path="http://192.168.1.103:3002/"
 
 
