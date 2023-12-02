@@ -75,7 +75,7 @@ server {
     }
 
     location / {
-        proxy_pass $backend_path;
+        proxy_pass $redirecting_backend_path;
         proxy_set_header Host \$host;
         proxy_http_version 1.1;
         proxy_set_header Upgrade \$http_upgrade;
