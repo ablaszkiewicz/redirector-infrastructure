@@ -18,7 +18,7 @@ inputs:
     required: true
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Update image inside VPS
       uses: appleboy/ssh-action@master
@@ -30,4 +30,4 @@ runs:
         script: |
           docker stop $(docker ps -q --filter ancestor=${{ inputs.image-name }} )
           docker pull ${{ inputs.image-name }}
-          docker run -d -p ${{ inputs.container-port }}:80 ${{ inputs.image-name }}
+          docker run -d --restart=always -p ${{ inputs.container-port }}:80 ${{ inputs.image-name }}
