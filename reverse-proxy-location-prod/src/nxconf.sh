@@ -2,9 +2,9 @@
 domain="asddaff.bieda.it"
 out="/etc/nginx/conf.d/default.conf"
 config_file="config"
-frontend_path="http://192.168.1.117:3003"
-redirecting_backend_path="http://192.168.1.117:3001"
-backend_path="http://192.168.1.117:3002/"
+frontend_path="http://192.168.3.144:3003"
+redirecting_backend_path="http://192.168.3.144:3001"
+backend_path="http://192.168.3.144:3002/"
 
 
 output_variable=$(cat "$config_file" | tr '\n' '|')
